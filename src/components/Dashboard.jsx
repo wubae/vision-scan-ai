@@ -2,6 +2,17 @@
 import React, { useEffect, useState } from "react";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
+const getDeviceId = () => {
+  let id = localStorage.getItem("deviceId");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("deviceId", id);
+  }
+  return id;
+};
+
+const DEVICE_ID = getDeviceId();
+
 const Dashboard = () => {
   const [logs, setLogs] = useState([]);
   const [showModal, setShowModal] = useState(false); // modal toggle
@@ -9,7 +20,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const response = await fetch(`${BACKEND_URL}/logs`);
+        const response = await fetch(`${BACKEND_URL}/logs?deviceId=${DEVICE_ID}`);
         const data = await response.json();
         setLogs(data);
       } catch (error) {

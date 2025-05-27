@@ -5,6 +5,18 @@ import "@tensorflow/tfjs";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
+const getDeviceId = () => {
+  let id = localStorage.getItem("deviceId");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("deviceId", id);
+  }
+  return id;
+};
+
+const DEVICE_ID = getDeviceId();
+
+
 const WebcamFeed = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -58,6 +70,8 @@ const WebcamFeed = () => {
                 body: JSON.stringify({
                   label: top.class,
                   confidence: top.score,
+                  deviceID: DEVICE_ID
+
                 }),
               }).catch((err) => {
                 console.error("Logging error:", err.message);

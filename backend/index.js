@@ -36,6 +36,7 @@ app.post("/log-detection", async (req, res) => {
       id: uuidv4(),
       label,
       confidence,
+      deviceId,
       timestamp: Date.now(),
     },
   };
@@ -55,7 +56,9 @@ app.listen(port, () => console.log(`Backend running on port ${port}`));
 app.get("/logs", async (req, res) => {
   const params = {
     TableName: "ObjectDetections",
-    Limit: 50, // Most recent 50 logs
+    FilterExpression: "deviceId = :did",
+    ExpressionAttributeValues: { ":did": deviceId },
+    Limit: 50,
   };
 
   try {
