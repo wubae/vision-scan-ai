@@ -2,8 +2,6 @@
 
 **VisionScan AI** is a real-time object detection web application built using **React**, **TensorFlow.js**, and **AWS DynamoDB**. It uses the **COCO-SSD** model to detect objects via webcam, logs the detections to a cloud database, and displays the results on an interactive dashboard.
 
-![VisionScan AI Screenshot](screenshot.png)
-
 ---
 
 ## 🚀 Features
