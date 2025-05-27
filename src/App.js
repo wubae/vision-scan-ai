@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from "react";
+import WebcamFeed from "./components/WebcamFeed";
+import Dashboard from "./components/Dashboard";
+import "./styles.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ backgroundColor: "#121212", minHeight: "100vh", color: "#fff", padding: "2rem" }}>
+      <h1 style={{ textAlign: "center", marginBottom: "2rem" }}>VisionScan AI</h1>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          gap: "1rem",
+        }}
+      >
+        <div style={{ flex: "1 1 640px", minWidth: "320px" }}>
+          <WebcamFeed />
+        </div>
+        <div style={{ flex: "1 1 600px", minWidth: "320px", marginLeft: "-40px" }}>
+          <Dashboard />
+        </div>
+      </div>
     </div>
   );
 }
