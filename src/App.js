@@ -6,9 +6,9 @@ import "./styles.css";
 
 function App() {
   return (
-    <div style={{ backgroundColor: "#121212", minHeight: "100vh", color: "#fff", padding: "2rem" }}>
-      <h1 style={{ textAlign: "center", marginBottom: "2rem" }}>VisionScan AI</h1>
-      <div
+    <div className="app-container" style={{ backgroundColor: "#121212", minHeight: "100vh", color: "#fff", padding: "2rem" }}>
+      <h1 className="app-title" style={{ textAlign: "center", marginBottom: "2rem" }}>VisionScan AI</h1>
+      <div className="main-content"
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -17,10 +17,10 @@ function App() {
           gap: "1rem",
         }}
       >
-        <div style={{ flex: "1 1 640px", minWidth: "320px" }}>
+        <div className="video-section" style={{ flex: "1 1 640px", minWidth: "320px" }}>
           <WebcamFeed />
         </div>
-        <div style={{ flex: "1 1 600px", minWidth: "320px", marginLeft: "-40px" }}>
+        <div className="dashboard-section" style={{ flex: "1 1 600px", minWidth: "320px", marginLeft: "-40px" }}>
           <Dashboard />
         </div>
       </div>

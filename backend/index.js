@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 // Health check
 app.get("/ping", (req, res) => {
-  console.log("🔁 Ping received");
+  console.log("Ping received");
   res.send("pong");
 });
 
@@ -32,11 +32,11 @@ app.post("/log-detection", async (req, res) => {
   const { label, confidence, deviceId } = req.body;
 
   if (!deviceId) {
-    console.log("❌ Missing deviceId in request body");
+    console.log("Missing deviceId in request body");
     return res.status(400).json({ error: "Missing deviceId in request body" });
   }
 
-  console.log("📦 Received log request:", { label, confidence, deviceId });
+  console.log("Received log request:", { label, confidence, deviceId });
 
   const params = {
     TableName: "ObjectDetections",
@@ -51,10 +51,10 @@ app.post("/log-detection", async (req, res) => {
 
   try {
     await dynamo.put(params).promise();
-    console.log("✅ DynamoDB Write Success");
+    console.log("DynamoDB Write Success");
     res.status(200).json({ message: "Logged successfully" });
   } catch (err) {
-    console.error("❌ DynamoDB Write Failed:", err);
+    console.error("DynamoDB Write Failed:", err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -64,7 +64,7 @@ app.get("/logs", async (req, res) => {
   const deviceId = req.query.deviceId;
 
   if (!deviceId) {
-    console.log("❌ Missing deviceId in query params");
+    console.log("Missing deviceId in query params");
     return res.status(400).json({ error: "Missing deviceId in query" });
   }
 
@@ -79,10 +79,10 @@ app.get("/logs", async (req, res) => {
 
   try {
     const data = await dynamo.scan(params).promise();
-    console.log(`✅ Retrieved ${data.Items.length} logs`);
+    console.log(`Retrieved ${data.Items.length} logs`);
     res.status(200).json(data.Items);
   } catch (err) {
-    console.error("❌ Failed to fetch logs:", err);
+    console.error("Failed to fetch logs:", err);
     res.status(500).json({ error: "Could not fetch logs" });
   }
 });
