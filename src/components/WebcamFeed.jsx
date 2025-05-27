@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import "@tensorflow/tfjs";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
 const WebcamFeed = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
@@ -50,7 +52,7 @@ const WebcamFeed = () => {
             if (top.class.toLowerCase() !== "person") {
               lastLogTime = now;
 
-              fetch("http://localhost:5050/log-detection", {
+              fetch(`${BACKEND_URL}/log-detection`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

@@ -1,5 +1,6 @@
 // src/components/Dashboard.jsx
 import React, { useEffect, useState } from "react";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Dashboard = () => {
   const [logs, setLogs] = useState([]);
@@ -8,7 +9,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const response = await fetch("http://localhost:5050/logs");
+        const response = await fetch(`${BACKEND_URL}/logs`);
         const data = await response.json();
         setLogs(data);
       } catch (error) {
@@ -151,7 +152,7 @@ const Dashboard = () => {
             <div style={{ marginTop: "1rem", display: "flex", justifyContent: "space-around" }}>
               <button
                 onClick={() => {
-                  fetch("http://localhost:5050/logs", { method: "DELETE" })
+                  fetch(`${BACKEND_URL}/logs`, { method: "DELETE" })
                     .catch(err => alert("Failed to delete logs."))
                     .finally(() => setShowModal(false));
                 }}
