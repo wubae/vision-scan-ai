@@ -22,10 +22,6 @@
 | React, HTML, CSS        | Node.js, Express   | AWS DynamoDB  |
 | TensorFlow.js (COCO-SSD)| UUID               | AWS SDK       |
 
-## Upcoming Updates
-
-- 📱 **Mobile UI**
-
 ---
 
 # Getting Started with Create React App
