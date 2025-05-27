@@ -70,7 +70,7 @@ const WebcamFeed = () => {
                 body: JSON.stringify({
                   label: top.class,
                   confidence: top.score,
-                  deviceID: DEVICE_ID
+                  deviceId: DEVICE_ID
 
                 }),
               }).catch((err) => {
